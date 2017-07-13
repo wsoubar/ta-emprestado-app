@@ -11,7 +11,10 @@ import { LoginPage } from './login';
     ],
     exports: [
         LoginPage
+    ],
+    providers: [
     ]
+
 })
 
 export class LoginPageModule {

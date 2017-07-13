@@ -4,11 +4,11 @@ import { NgModule } from '@angular/core';
 
 
 @NgModule({
-    declarations: [],
+    declarations: [AboutPage],
     imports: [
         IonicPageModule.forChild(AboutPage)
     ],
-    exports: []
+    exports: [AboutPage]
 }) 
 
 export class AboutPageModule {
