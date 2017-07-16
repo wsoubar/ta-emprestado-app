@@ -1,8 +1,10 @@
 import { AuthProvider } from './../../providers/auth/auth';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 
+@IonicPage({
+})
 @Component({
     selector: 'page-register',
     templateUrl: 'register.html'

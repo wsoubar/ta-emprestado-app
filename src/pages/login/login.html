@@ -1,32 +1,35 @@
-<ion-header>
-    <ion-navbar>
-        <ion-title>
-            Ionic3Firebase
-        </ion-title>
-    </ion-navbar>
-</ion-header>
-<ion-content padding>
-
-    <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
-        <ion-row>
+<ion-content class="background">
+   <h1>TE<br/>EMPRESTEI</h1>
+   <ion-card>
+      <ion-card-header>
+         LOGIN
+      </ion-card-header>
+      <ion-card-content>
+         <ion-list no-lines>
+            <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
             <ion-item>
-                <ion-label for="email"></ion-label>
-                <ion-input type="email" value="" placeholder="Email" formControlName="email"></ion-input>
+               <ion-label for="email" floating>Email</ion-label>
+               <ion-input type="email" value="" placeholder="Email" formControlName="email"></ion-input>
             </ion-item>
-        </ion-row>
-        <ion-row>
             <ion-item>
-                <ion-label for="password"></ion-label>
-                <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+               <ion-label for="password" floating>Password</ion-label>
+               <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
             </ion-item>
-        </ion-row>
-        <ion-row>
-            <button type="submit" ion-button block>Log in</button>
-        </ion-row>
-        <ion-row> 
-            <button  ion-button block>Sign up</button>
-        </ion-row>
-
-    </form>
-
+            <ion-item>
+               <p>Forgot the password? <a href="">Get here.</a></p>
+            </ion-item>
+            <button ion-button color='danger' block outline>LOGIN</button>
+            </form>
+         </ion-list>
+         <b>OR</b>
+         <button ion-button color='primary' icon-left block>
+            <ion-icon name='logo-facebook'></ion-icon>
+            <div> Login with Facebook</div>
+         </button>
+         <button ion-button color='danger' icon-left block>
+            <ion-icon name='logo-google'></ion-icon>
+            <div> Login with Google</div>
+         </button>
+      </ion-card-content>
+   </ion-card>
 </ion-content>
