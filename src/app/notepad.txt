@@ -1,0 +1,4 @@
+ionic plugin add cordova-plugin-facebook4 --variable APP_ID="214393855751976" --variable APP_NAME="Me Devolve"
+
+ionic cordova plugin add cordova-sqlite-storage
+npm install --save @ionic/storage

@@ -12,6 +12,7 @@ export class TabsPage {
   aboutRoot = 'AboutPage'
 
 
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController) {
+  }
 
 }

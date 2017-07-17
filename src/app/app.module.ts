@@ -11,6 +11,8 @@ import { MyApp } from './app.component';
 import { AuthProvider } from '../providers/auth/auth';
 import { HttpModule } from "@angular/http";
 import { config } from "../config/app.config";
+import { SessionProvider } from '../providers/session/session';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [ MyApp ],
@@ -20,7 +22,8 @@ import { config } from "../config/app.config";
     HttpModule,
     AngularFireModule.initializeApp(config.firebase),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -30,7 +33,8 @@ import { config } from "../config/app.config";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    SessionProvider
   ]
 })
 export class AppModule {}
