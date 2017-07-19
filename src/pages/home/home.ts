@@ -12,11 +12,13 @@ export class HomePage {
   userProfile : any;
 
   constructor(public navCtrl: NavController, private storage: Storage) {
+    /*
     this.storage.get('userProfile').then(profile => {
         console.log('get>>> ' + profile);
         this.userProfile = JSON.parse(profile); 
-        console.log('userProfile >>>>>' + JSON.stringify(this.userProfile));
+        //console.log('userProfile >>>>>' + JSON.stringify(this.userProfile));
     });
+      */
   }
 
   ionViewDidLoad() {

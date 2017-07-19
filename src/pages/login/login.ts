@@ -17,7 +17,6 @@ export class LoginPage {
     email: AbstractControl;
     password: AbstractControl;
     error: any;
-    userProfile: any = null;
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
         private auth: AuthProvider, private fb: FormBuilder, public alertCtrl: AlertController,
@@ -38,7 +37,8 @@ export class LoginPage {
             //alert('Implement authentication');
             let credentials = ({ email: this.email.value, password: this.password.value });
             this.auth.loginWithEmail(credentials).subscribe(data => {
-                console.log(data);
+                //console.log(data);
+                this.storage.set('userProfile', JSON.stringify(data));
                 this.navCtrl.setRoot('TabsPage');
             }, error => {
                 console.log(error);
@@ -65,28 +65,30 @@ export class LoginPage {
         console.log('>>>>>>>>>>>> facebookLogin <<<<<<<<<<<<<');
         this.facebook.login(['email'])  // 'public_profile', 'user_friends', 
             .then((res: FacebookLoginResponse) => {
-                    console.log('Logged into Facebook!', res);
-                    const facebookCredential = firebase.auth.FacebookAuthProvider
-                        .credential(res.authResponse.accessToken);
-                    
+                console.log('Logged into Facebook!', res);
+                const facebookCredential = firebase.auth.FacebookAuthProvider
+                    .credential(res.authResponse.accessToken);
 
-                    firebase.auth().signInWithCredential(facebookCredential)
+                firebase.auth().signInWithCredential(facebookCredential)
                     .then((success) => {
                         console.log("Firebase success: " + JSON.stringify(success));
-                        this.userProfile = success;
                         this.storage.set('userProfile', JSON.stringify(success));
                         this.navCtrl.setRoot('TabsPage');
                     })
                     .catch((error) => {
                         console.log("Firebase failure: " + JSON.stringify(error));
                     });
-                        
-                }
+
+            }
             )
             .catch(e => console.log('Error logging into Facebook', e));
 
 
         //this.facebook.logEvent(this.facebook.EVENTS.EVENT_NAME_ADDED_TO_CART);
+    }
+
+    loginWithGoogle() {
+        firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());
     }
 
     ionViewDidLoad() {
