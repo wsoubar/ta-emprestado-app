@@ -13,24 +13,28 @@ export class RegisterPage {
     registerForm: FormGroup;
     email: AbstractControl;
     password: AbstractControl;
+    retypedPassword: AbstractControl;
     error: any;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, private auth: AuthProvider) {
         this.registerForm = this.fb.group({
             'email': ['', Validators.compose([Validators.required, Validators.pattern(/[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)])],
-            'password': ['', Validators.compose([Validators.required, Validators.minLength(1)])]
+            'password': ['', Validators.compose([Validators.required, Validators.minLength(1)])],
+            'retypedPassword': ['', Validators.compose([Validators.required, Validators.minLength(1)])],
+            
         });
 
         this.email = this.registerForm.controls['email'];
         this.password = this.registerForm.controls['password'];
+        this.retypedPassword = this.registerForm.controls['retypedPassword'];
     }
 
     register(): void {
         if (this.registerForm.valid) {
             var credentials = ({ email: this.email.value, password: this.password.value });
             this.auth.registerUser(credentials).subscribe(registerData => {
+                console.log('User is registered and logged in.');
                 console.log(registerData);
-                // alert('User is registered and logged in.');
                 this.navCtrl.setRoot('LoginPage');
             }, registerError => {
                 console.log(registerError);

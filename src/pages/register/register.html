@@ -1,26 +1,28 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Ionic3Firebase</ion-title>
-  </ion-navbar>
-</ion-header>
- 
-<ion-content padding>
-  <ion-title>Signup</ion-title>
-  <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate>
-      <ion-row>
-        <ion-item>
-            <ion-label for="email"></ion-label>
-            <ion-input type="email" value="" placeholder="Email" formControlName="email"></ion-input>
-        </ion-item>
-      </ion-row>
-      <ion-row>
-        <ion-item>
-            <ion-label for="password"></ion-label>
-            <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
-        </ion-item>
-      </ion-row>
-      <ion-row>
-          <button ion-button type="submit" block>Sign up</button>
-      </ion-row>
-  </form>
+<ion-content class="background">
+    <h1>ME<br/>DEVOLVE</h1>
+    <ion-card>
+        <ion-card-header>
+            REGISTRAR
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list no-lines>
+                <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate>
+                    <ion-item>
+                        <ion-label for="email" floating>Email</ion-label>
+                        <ion-input type="email" value="" placeholder="Email" formControlName="email"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label for="password" floating>Senha</ion-label>
+                        <ion-input type="password" placeholder="Senha" formControlName="password"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label for="retypedPassword" floating>Confirme a senha</ion-label>
+                        <ion-input type="password" placeholder="Confirme a senha" formControlName="retypedPassword"></ion-input>
+                    </ion-item>
+                    <button ion-button type="submit" color="primary" outline block>Registrar</button>
+                    <button ion-button type="button" color="danger" outline block [navPush]="'LoginPage'">Cancelar</button>
+                </form>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
 </ion-content>
