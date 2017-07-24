@@ -54,7 +54,6 @@ export class LoginPage {
 
     alert(message: string) {
         let alert = this.alertCtrl.create({
-            title: 'Te emprestei!',
             subTitle: message,
             buttons: ['OK']
         });
