@@ -13,6 +13,7 @@ import { HttpModule } from "@angular/http";
 import { config } from "../config/app.config";
 import { SessionProvider } from '../providers/session/session';
 import { IonicStorageModule } from '@ionic/storage';
+import { ItemProvider } from '../providers/item/item';
 
 @NgModule({
   declarations: [ MyApp ],
@@ -34,7 +35,8 @@ import { IonicStorageModule } from '@ionic/storage';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
-    SessionProvider
+    SessionProvider,
+    ItemProvider
   ]
 })
 export class AppModule {}
