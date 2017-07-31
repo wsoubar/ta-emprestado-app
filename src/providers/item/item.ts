@@ -1,32 +1,45 @@
+import { Item } from './../../shared/model/item';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 
-/*
-  Generated class for the ItemProvider provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular DI.
-*/
 @Injectable()
 export class ItemProvider {
 
-  constructor(public http: Http, private db: AngularFireDatabase) {
-    console.log('Hello ItemProvider Provider');
-  }
+    constructor(public http: Http, private db: AngularFireDatabase) {
+        console.log('Hello ItemProvider Provider');
+    }
 
-  listItems():Observable<any[]> {
-    return this.db.list('items').do(console.log);
-  }
+    listItems(): Observable <Item []> {
+        return this.db.list('items')
+            //.do(console.log)
+            .map(Item.fromJsonList);
+    }
 
-  addItem() {
+    addItem(item: any) {
+        return Observable.create(observer => {
+            this.db.list('items').push(item)
+                .then(data => {
+                    observer.next(data);
+                }).catch(error => {
+                    observer.error(error);
+                });
+        });
+    }
 
-  }
-
-  removeItem() {}
+    removeItem(item: any) {
+        return Observable.create(observer => {
+            this.db.list('items').remove(item.$key)
+                .then(data => {
+                    observer.next(data);
+                }).catch(error => {
+                    observer.next(error);
+                });
+        });
+    }
 
 
 
