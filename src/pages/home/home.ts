@@ -1,3 +1,4 @@
+import { AppMessagesProvider } from './../../providers/app-messages/app-messages';
 import { Item } from './../../shared/model/item';
 import { Observable } from 'rxjs/Observable';
 import { ItemProvider } from './../../providers/item/item';
@@ -15,7 +16,8 @@ export class HomePage {
     userProfile: any;
     items$: Observable<Item[]>;
 
-    constructor(public navCtrl: NavController, private itemProvider: ItemProvider, private alertCtrl: AlertController) {
+    constructor(public navCtrl: NavController, private itemProvider: ItemProvider, private alertCtrl: AlertController
+        , private messagesPvdr: AppMessagesProvider) {
         /*
 
         private storage: Storage,  
@@ -35,18 +37,10 @@ export class HomePage {
         console.log(item);
         this.itemProvider.removeItem(item).subscribe(data=>{
             console.log('removido com sucesso.')
-            this.alert('Item removido com sucesso');
+            this.messagesPvdr.alert({message: 'Item removido com sucesso'});
         }, error => {
             console.error('Erro: ', error);
         });
-    }
-
-    alert(message: string) {
-        let alert = this.alertCtrl.create({
-            subTitle: message,
-            buttons: ['OK']
-        });
-        alert.present();
     }
 
     ionViewDidLoad() {
