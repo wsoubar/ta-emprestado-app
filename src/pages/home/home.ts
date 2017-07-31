@@ -49,7 +49,6 @@ export class HomePage {
         alert.present();
     }
 
-
     ionViewDidLoad() {
         console.log('ionViewDidLoad HomePage');
     }
